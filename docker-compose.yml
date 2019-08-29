@@ -1,0 +1,34 @@
+version: '3'
+
+services:
+  webserver:
+    build:
+      context: ./
+      dockerfile: DockerFile
+    container_name: 'gsc-webserver'
+    restart: 'always'
+    ports:
+      - "80:80"
+      - "443:443"
+    links: 
+      - mariadb
+    volumes: 
+      - ${DOCUMENT_ROOT-./www}:/var/www/html
+      - ${PHP_INI-./config/php/php.ini}:/usr/local/etc/php/php.ini
+      - ${VHOSTS_DIR-./config/vhosts}:/etc/apache2/sites-enabled
+      - ${LOG_DIR-./logs/apache2}:/var/log/apache2
+
+mariadb:
+    image: mariadb:10.1
+    volumes:
+        - mariadb:/var/lib/mysql
+    environment:
+        TZ: "Europe/Prague"
+        MYSQL_ALLOW_EMPTY_PASSWORD: "no"
+        MYSQL_ROOT_PASSWORD: "rootpwd"
+        MYSQL_USER: 'testuser'
+        MYSQL_PASSWORD: 'testpassword'
+        MYSQL_DATABASE: 'testdb'
+
+volumes:
+    mariadb:
