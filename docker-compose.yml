@@ -18,7 +18,7 @@ services:
       - ${VHOSTS_DIR-./config/vhosts}:/etc/apache2/sites-enabled
       - ${LOG_DIR-./logs/apache2}:/var/log/apache2
 
-mariadb:
+  mariadb:
     image: mariadb:10.1
     volumes:
         - mariadb:/var/lib/mysql
