@@ -1,6 +1,5 @@
 FROM ubuntu:latest
 ENV DEBIAN_FRONTEND=noninteractive
-RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 3E5C1192 40976EAF437D05B5 3B4FE6ACC0B21F32 06BBDC2602DFE7E7
 RUN apt-get update -y
 RUN apt-get upgrade -y
 RUN apt-get install -y apache2 apache2-dev curl haveged language-pack-en language-pack-en-base software-properties-common
