@@ -11,8 +11,6 @@ RUN apt-get install -yq libapache2-mod-php7.3 php7.3 php7.3-cli php7.3-curl php7
 RUN apt-get install -yq php7.3-mysql php7.3-readline php7.3-pgsql php7.3-sqlite3 php7.3-xml php7.3-zip
 RUN apt-get install -yq composer
 RUN update-alternatives --set php /usr/bin/php7.3
-RUN update-alternatives --set phpdbg /usr/bin/phpdbg7.3
-RUN update-alternatives --set phpize /usr/bin/phpize7.3
 CMD ["apachectl","-D","FOREGROUND"]
 RUN a2enmod expires headers rewrite ssl
 EXPOSE 80
